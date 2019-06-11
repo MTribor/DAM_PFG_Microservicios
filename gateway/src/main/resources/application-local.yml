@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: task-calendar-service #Order service route declaration
+          uri: "http://localhost:8095"
+          predicates:
+            - Path=/calendar/** #Path to access the service
+          filters:
+            - StripPrefix=1
+
+        - id: task-control-service #Task-Control service route declaration
+          uri: "http://localhost:8098"
+          predicates:
+            - Path=/task-control/** #Path to access the service
+          filters:
+            - StripPrefix=1
+

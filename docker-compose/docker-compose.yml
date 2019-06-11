@@ -1,0 +1,105 @@
+version: '3'
+services:
+
+  postgresdb:
+    image: postgres:latest
+    container_name: postgresdb
+    volumes:
+      - /private/var/lib/postgresql:/var/lib/postgresql
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+
+  server-config:
+    image: taskcontrolapp-server-config:latest
+    container_name: server-config
+    ports:
+      - "8888:8888"
+    expose:
+      - 8888
+      
+
+  service-discovery:
+    image: taskcontrolapp-service-discovery:latest
+    container_name: service-discovery
+    ports:
+      - "8761:8761"
+    expose:
+      - 8761
+    depends_on:
+      - server-config
+    links:
+      - server-config
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://server-config:8888
+      EUREKA_URI: http://service-discovery:8761/eureka
+
+      
+
+  task-control-service:
+    image: task-control-service:latest
+    container_name: task-control-service-container
+    expose:
+      - 8098
+    ports:
+      - "8098:8098"
+    depends_on:
+      - postgresdb
+      - server-config
+      - service-discovery
+    links:
+      - server-config
+      - service-discovery
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://server-config:8888
+      EUREKA_URI: http://service-discovery:8761/eureka
+
+
+
+  task-calendar-service:
+    image: task-calendar-service:latest
+    container_name: task-calendar-service-container
+    ports:
+      - "8095:8095"
+    expose:
+      - 8095
+    depends_on:
+      - mongodb
+      - server-config
+      - service-discovery
+    links:
+      - mongodb
+      - server-config
+      - service-discovery
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://mongodb/task-calendar-service_db
+      SPRING_CLOUD_CONFIG_URI: http://server-config:8888
+      EUREKA_URI: http://service-discovery:8761/eureka
+
+
+
+  gateway:
+    image: taskcontrolapp-gateway:latest
+    container_name: gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - server-config
+      - service-discovery
+    links:
+      - server-config
+      - service-discovery
+    environment:
+      SPRING_CLOUD_CONFIG_URI: http://server-config:8888
+      EUREKA_URI: http://service-discovery:8761/eureka
+
+

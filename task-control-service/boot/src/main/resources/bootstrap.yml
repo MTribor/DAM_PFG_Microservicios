@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: task-control-service
+  cloud:
+    config:
+      name: task-control-service
+      retry:
+        max-attempts: 10
+        initial-interval: 5000
+      fail-fast: true

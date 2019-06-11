@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: task-calendar-service
+  cloud:
+    config:
+      name: task-calendar-service
+      retry:
+        max-attempts: 10
+        initial-interval: 5000
+      fail-fast: true

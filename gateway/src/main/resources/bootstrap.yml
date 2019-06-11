@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      name: gateway
+      retry:
+        max-attempts: 10
+        initial-interval: 5000
+      fail-fast: true

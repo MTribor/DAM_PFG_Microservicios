@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: task-calendar-service
+  cloud:
+    config:
+      enabled: false
+eureka:
+  client:
+    enabled: false
+#    Local configuration for testing. Spring Cloud Config Server and Eureka Client are not enabled to deploy the
+#  service in a local machine where not necessary those services are up.

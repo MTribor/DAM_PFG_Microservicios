@@ -1,0 +1,30 @@
+server:
+  port: 8098    #default port where the service will be started
+
+spring:
+  application:
+    name: task-control-service   #current service name to be used by the eureka server
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: mysecretpassword
+  jpa:
+    hibernate:
+      ddl-auto: update
+      generate-ddl: true
+    show-sql: true
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+management:
+  security:
+    enabled: false

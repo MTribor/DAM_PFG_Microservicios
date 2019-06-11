@@ -1,0 +1,28 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: server-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitlab.com/task-control-app-config/config-repo.git
+          force-pull: true
+          clone-on-start: true
+          default-label: master
+
+          repos:
+
+            develop:
+              uri: https://gitlab.com/task-control-app-config/config-repo.git
+              force-pull: true
+              clone-on-start: true
+              default-label: develop
+
+            local:
+              uri: https://gitlab.com/task-control-app-config/config-repo.git
+              force-pull: true
+              clone-on-start: true
+              default-label: local

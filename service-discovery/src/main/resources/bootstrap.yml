@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: service-discovery
+  cloud:
+    config:
+      name: service-discovery
+      retry:
+        max-attempts: 10
+        initial-interval: 5000
+      fail-fast: true

@@ -1,0 +1,9 @@
+server:
+  port: 8095    #service port
+
+spring:
+  application:
+    name: task-calendar-service   #current service name to be used by the eureka server
+  data:
+    mongodb:
+      database: task-calendar-service_db
