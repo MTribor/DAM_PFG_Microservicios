@@ -20,7 +20,7 @@ services:
     container_name: mongodb
 
   server-config:
-    image: taskcontrolapp-server-config:latest
+    image: mtribor/taskcontrolapp-server-config:latest
     container_name: server-config
     ports:
       - "8888:8888"
@@ -29,7 +29,7 @@ services:
       
 
   service-discovery:
-    image: taskcontrolapp-service-discovery:latest
+    image: mtribor/taskcontrolapp-service-discovery:latest
     container_name: service-discovery
     ports:
       - "8761:8761"
@@ -46,7 +46,7 @@ services:
       
 
   task-control-service:
-    image: task-control-service:latest
+    image: mtribor/task-control-service:latest
     container_name: task-control-service-container
     expose:
       - 8098
@@ -66,7 +66,7 @@ services:
 
 
   task-calendar-service:
-    image: task-calendar-service:latest
+    image: mtribor/task-calendar-service:latest
     container_name: task-calendar-service-container
     ports:
       - "8095:8095"
@@ -88,7 +88,7 @@ services:
 
 
   gateway:
-    image: taskcontrolapp-gateway:latest
+    image: mtribor/taskcontrolapp-gateway:latest
     container_name: gateway
     ports:
       - "8080:8080"
