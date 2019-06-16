@@ -2,11 +2,7 @@
 
 ![Portada](https://i.imgur.com/IsE1hx4.png)
 
-[<img src="https://fatimamartinez.es/wp-content/uploads/2019/02/Logo-Linkedin.png"  alt="Smiley face"  height="42"  width="42">](https://www.linkedin.com/in/mtribor/)
-[<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-twitter-512.png"  alt="Smiley face"  height="42"  width="42">](https://twitter.com/mtribor)
-[<img src="https://clipart.info/images/ccovers/1499955332gmail-icon-logo-png.png"  alt="Smiley face"  height="40"  width="45">](mailto:mtribor@gmail.com)
-
-
+[<img src="https://fatimamartinez.es/wp-content/uploads/2019/02/Logo-Linkedin.png"  alt="Smiley face"  height="42"  width="42">](https://www.linkedin.com/in/mtribor/) [<img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-twitter-512.png"  alt="Smiley face"  height="42"  width="42">](https://twitter.com/mtribor) [<img src="https://clipart.info/images/ccovers/1499955332gmail-icon-logo-png.png"  alt="Smiley face"  height="40"  width="45">](mailto:mtribor@gmail.com)
 
 ## Índice
 
@@ -735,8 +731,10 @@ REST, REpresentational State Transfer, es un tipo de arquitectura de desarrollo 
 
 En nuestro caso, los servicios desarrollados siguen este patrón, ya que a día de hoy, REST y JSON, son la combinación más utilizada para el desarrollo de APIs, y la que un mayor apoyo de parte de la comunidad poseen.
 
+<img src="https://pngimage.net/wp-content/uploads/2018/06/introduccion-png-3.png">
 
-Con esto, además, Spring Framework posee toda una serie de librerías, módulos y funcionalidades a disposición de los desarrolladores para crear nuevas APIs REST. Para nosotros, algunas de estas características son:
+
+Con esto, además, Spring Framework posee toda una serie de librerías, módulos y funcionalidades a disposición de los desarrolladores para crear nuevas APIs REST. 
 
 
 La anotación @RestController , que indica que la clase Java que la contenga será la encargada de manejar las peticiones HTTP que nuestra aplicación recibirá, y que, además, nuestra aplicación ofrecerá respuestas acordes a las restricciones REST. En nuestro caso, como se ha indicado anteriormente, se oferecerán respuestas JSON.
@@ -763,14 +761,14 @@ ControlDTO controlDTO);
 @GetMapping
 ResponseEntity<List<ControlDTO>> getAll(final ControlFilterCriteriaDTO search);
 
-@GetMapping(EndPointUris. _CONTROL_ )
+@GetMapping(EndPointUris.CONTROL)
 ResponseEntity<ControlDTO> getById(@PathVariable(value = "id")
 final int controlId);
 
-@DeleteMapping(EndPointUris. _CONTROL_ )
+@DeleteMapping(EndPointUris.CONTROL)
 ResponseEntity<Void> delete(@PathVariable(value = "id") final int controlId);
 
-@PutMapping(EndPointUris. _CONTROL_ )
+@PutMapping(EndPointUris.CONTROL)
 ResponseEntity<ControlDTO> update(@PathVariable(value = "id") final int controlId, @Valid @RequestBody final ControlDTO controlDTO);
  }
 ```
@@ -787,30 +785,29 @@ private TaskControlService taskControlService;
 @Override
 public ResponseEntity<ControlDTO> create(@Valid ControlDTO
 controlDTO) {
-return ResponseEntity.OK(taskControlService.create(controlDTO));
+return ResponseEntity.ok(taskControlService.create(controlDTO));
 }
 
 @Override
 public ResponseEntity<List<ControlDTO>>
 getAll(ControlFilterCriteriaDTO search) {
-return ResponseEntity.OK(taskControlService.getAll(search));
+return ResponseEntity.ok(taskControlService.getAll(search));
 }
 
 public ResponseEntity<ControlDTO> getById(@PathVariable(value =
 "id") final int controlId) {
-return
-ResponseEntity.OK(taskControlService.getById(controlId));
+return ResponseEntity.ok(taskControlService.getById(controlId));
 }
 
 @Override
 public ResponseEntity<Void> delete(int controlId) {
-return ResponseEntity.NOCONTENT().build();
+return ResponseEntity.noContent().build();
 }
 
 @Override
 public ResponseEntity<ControlDTO> update(int controlId, @Valid
 ControlDTO controlDTO) {
-return ResponseEntity.OK(taskControlService.update(controlId, controlDTO));
+return ResponseEntity.ok(taskControlService.update(controlId, controlDTO));
 }
 }
 ```
