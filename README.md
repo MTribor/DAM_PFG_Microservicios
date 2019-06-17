@@ -811,6 +811,40 @@ return ResponseEntity.ok(taskControlService.update(controlId, controlDTO));
 }
 }
 ```
+Para la documentación de estas APIs, es recomendable utilizar librerías ya existentes que permiten acceder a un índice con los métodos permitidos por la API, sus respuestas, requerimientos, accesibilidad, etc.
+
+A día de hoy, una de las mayores librerías o herramientas que da este soporte es Swagger. Con Swagger es posible documentar una API de forma sencilla sin la necesidad de mucha configuración o escritura.
+
+Para utilizar Swagger, tan solo es necesario incluir la dependencia principal a esta librería Maven en el POM principal del proyecto: 
+
+```xml
+<dependency> 
+<groupId>io.springfox</groupId> 
+<artifactId>springfox-swagger2</artifactId> 
+<version>2.9.2</version> 
+</dependency>
+```
+
+Además, será necesario activar esta utilidad en la clase ejecutable principal de nuestra aplicación, en este caso, tendríamos algo como: 
+```java
+@EnableSwagger2
+```
+Con esta dependencia nuestro proyecto contará con unos “endpoints” a través de los cuales cualquier persona que acceda a la dirección referente a Swagger, la cual es ***/v2/api-docs**, obtendrá toda la información en formato JSON sobre los métodos de la API en cuestión.
+
+Por otro lado, tenemos una interfaz gráfica ofrecida por Swagger para documentar nuestra aplicación de forma más sencilla y dinámica, que nos ofrece toda esta información en una pantalla HTML a través de la dirección ***/swagger-ui.html**:
+
+<img src="https://i.imgur.com/BaASx07.png">
+
+Para el uso de esta herramienta, será necesario incluir la dependencia correspondiente en el POM: 
+```xml
+<dependency> 
+<groupId>io.springfox</groupId> 
+<artifactId>springfox-swagger-ui</artifactId> 
+<version>2.9.2</version> 
+</dependency>
+```
+
+----
 
 ### Spring Boot - API Rest Manejo de Excepciones
 
